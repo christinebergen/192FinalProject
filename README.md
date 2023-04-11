@@ -15,7 +15,7 @@ API.
 
 ### APIs used:
 https://thesession.org/api<br/>
-https://api.wikimedia.org/core/v1/wikipedia/en/search/page?q=earth&limit=5
+https://en.wikipedia.org/w/api.php
 
 ### JS code stack
 React JS Library: https://react.dev/<br/>
