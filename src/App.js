@@ -24,7 +24,7 @@ class App extends React.Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.fetchWikiResults = this.fetchWikiResults.bind(this);
   }
-
+  //this function is used to fetch the top 50 most popular tunes from thesession.org
   async componentDidMount() {
     const url = 'https://thesession.org/tunes/popular?format=json&perpage=50';
     const response = await fetch(url);
@@ -40,7 +40,7 @@ class App extends React.Component {
       }
     );
   }
-  //this function is used to fetch the wikipedia results for the selected tune by name ane tune type
+  //this function is used to fetch the wikipedia results for the selected tune by name and tune type
   async fetchWikiResults(name, type) {
     const query = `${name} ${type}`;
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;
@@ -56,7 +56,7 @@ class App extends React.Component {
     this.setState({ wikiResults: results.slice(0, 5) });
     console.log('wiki results', results);
   }
-
+  //button click changes state and pulls a random tune from the list of tunes, and then fetches the wikipedia results for that tune
   handleButtonClick = () => {
     try {
       const { tunes } = this.state;
