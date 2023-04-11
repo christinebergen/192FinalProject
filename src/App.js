@@ -40,7 +40,7 @@ class App extends React.Component {
       }
     );
   }
-//this function is used to fetch the wikipedia results for the selected tune by name ane tune type
+  //this function is used to fetch the wikipedia results for the selected tune by name ane tune type
   async fetchWikiResults(name, type) {
     const query = `${name} ${type}`;
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;
@@ -86,26 +86,28 @@ class App extends React.Component {
     const { loading, currentTune, wikiResults } = this.state;
 
     return (
-      <div
-        id="root"
-        className="bg-[#98AA9f] flex flex-col"
-      >
+      <div id="root" className="bg-[#98AA9f] flex flex-col">
         <div className="flex flex-col justify-center items-center">
-        <h1 className="text-5xl mt-8 p-4 font-bold w-2/3 text-center dark-green bg-[#4D5D53] text-[#CEE1D5] rounded-lg">
-          Traditional Irish Music Randomizer
-        </h1>
-        <h2 className="font-bold p-4 text-center">
-          From the top 50 most popular tunes on{' '}
-          <a className="text-blue-900 underline italic" href="thesession.org">
-            The Session
-          </a>
-          , one of the most widely-used sites for traditional irish music
-        </h2>
-        <button 
-          className="dark-green bg-[#4D5D53] hover:bg-black text-[#CEE1D5] font-bold py-4 px-4 mb-4 border-2 border-black rounded"
-          onClick={this.handleButtonClick}
-        >
-          Click here to Load Random Tune!
+          <h1 className="text-5xl mt-8 p-4 font-bold w-2/3 text-center dark-green bg-[#4D5D53] text-[#CEE1D5] rounded-lg">
+            Traditional Irish Music Randomizer
+          </h1>
+          <h2 className="font-bold p-4 text-center">
+            From the top 50 most popular tunes on{' '}
+            <a
+              className="text-blue-900 underline italic"
+              href="https://thesession.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              The Session
+            </a>
+            , one of the most widely-used sites for traditional irish music
+          </h2>
+          <button
+            className="dark-green bg-[#4D5D53] hover:bg-black text-[#CEE1D5] font-bold py-4 px-4 mb-4 border-2 border-black rounded"
+            onClick={this.handleButtonClick}
+          >
+            Click here to Load Random Tune!
           </button>
         </div>
         {loading || !currentTune ? (
@@ -113,7 +115,10 @@ class App extends React.Component {
         ) : (
           <div className=" flex flex-col ml-12 mr-12 lg:flex-row">
             <div className="dark-green bg-[#4D5D53] text-[#CEE1D5] mt-12 justify-center items-center text-center rounded-lg w-full p-4 lg:w-1/2 h-1/4 ">
-              <h2 className="mr-12 ml-12 pt-4 text-4xl font-bold" id="display-current-tune">
+              <h2
+                className="mr-12 ml-12 pt-4 text-4xl font-bold"
+                id="display-current-tune"
+              >
                 {currentTune.name}
               </h2>
               <p className="text-2xl font-semibold">
@@ -126,6 +131,8 @@ class App extends React.Component {
                 <a
                   className="text-2xl font-semibold underline text-blue-900 italic"
                   href={currentTune.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {currentTune.name} on The Session
                 </a>
