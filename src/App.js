@@ -2,6 +2,16 @@ import React from 'react';
 import './App.css';
 import anime from 'animejs/lib/anime.es.js';
 
+/* This React JS app has been created from 2 different APIs to provide information on traditional Irish Music.
+THe first API is from thesession.org and will randomly secure a tune from the top 50 most popular tunes on the site.
+The second API will search for information on the selected tune using the Wikipedia Search API.
+Author: @cbergen
+CSS: tailwindcss.com
+Credit for assitance for coding to: 
+chatGPT https://openai.com/blog/chatgpt for general questions 
+anime.js (https://animejs.com/) for the wikipedia result animation.
+**/
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +40,7 @@ class App extends React.Component {
       }
     );
   }
-
+//this function is used to fetch the wikipedia results for the selected tune by name ane tune type
   async fetchWikiResults(name, type) {
     const query = `${name} ${type}`;
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;
@@ -71,17 +81,6 @@ class App extends React.Component {
       console.error(error);
     }
   };
-  // handleButtonClick = () => {
-  //   const { tunes } = this.state;
-  //   const shuffledTunes = [...tunes].sort(() => Math.random() - 0.5);
-  //   const randomIndex = Math.floor(Math.random() * shuffledTunes.length);
-  //   const randomTune = shuffledTunes[randomIndex];
-  //   console.log('selected tune', randomTune.name);
-  //   this.setState({ currentTune: randomTune }, () => {
-  //     this.fetchWikiResults(randomTune.name, randomTune.type);
-
-  //   });
-  // };
 
   render() {
     const { loading, currentTune, wikiResults } = this.state;
@@ -89,39 +88,41 @@ class App extends React.Component {
     return (
       <div
         id="root"
-        className="bg-[#98AA9f] flex flex-col justify-center items-center"
+        className="bg-[#98AA9f] flex flex-col"
       >
-        <h1 className="text-5xl mt-8 p-4 font-bold w-2/3 text-center bg-[#4D5D53] text-[#CEE1D5] rounded-lg">
+        <div className="flex flex-col justify-center items-center">
+        <h1 className="text-5xl mt-8 p-4 font-bold w-2/3 text-center dark-green bg-[#4D5D53] text-[#CEE1D5] rounded-lg">
           Traditional Irish Music Randomizer
         </h1>
-        <h2 className="font-bold p-4">
+        <h2 className="font-bold p-4 text-center">
           From the top 50 most popular tunes on{' '}
           <a className="text-blue-900 underline italic" href="thesession.org">
             The Session
           </a>
           , one of the most widely-used sites for traditional irish music
         </h2>
-        <button
-          className="bg-[#4D5D53] hover:bg-black text-[#CEE1D5] font-bold py-2 px-4 border border-black rounded"
+        <button 
+          className="dark-green bg-[#4D5D53] hover:bg-black text-[#CEE1D5] font-bold py-4 px-4 mb-4 border-2 border-black rounded"
           onClick={this.handleButtonClick}
         >
           Click here to Load Random Tune!
-        </button>
+          </button>
+        </div>
         {loading || !currentTune ? (
-          <div>loading...</div>
+          <div id="loading">loading...</div>
         ) : (
-          <div className=" flex flex-col lg:flex-row">
-            <div className="bg-[#4D5D53] text-[#CEE1D5] rounded-lg m-8 w-full lg:w-1/2 mr-8">
-              <h2 className="pl-8 pt-4 text-4xl font-bold">
+          <div className=" flex flex-col ml-12 mr-12 lg:flex-row">
+            <div className="dark-green bg-[#4D5D53] text-[#CEE1D5] mt-12 justify-center items-center text-center rounded-lg w-full p-4 lg:w-1/2 h-1/4 ">
+              <h2 className="mr-12 ml-12 pt-4 text-4xl font-bold" id="display-current-tune">
                 {currentTune.name}
               </h2>
-              <p className="pl-8 text-2xl font-semibold">
+              <p className="text-2xl font-semibold">
                 Tune Type: {currentTune.type}
               </p>
-              <p className="pl-8 text-2xl font-semibold">
+              <p className="text-2xl font-semibold">
                 Click this link to see the sheet music:{' '}
               </p>
-              <p className="pl-8 pb-4">
+              <p className=" pb-4">
                 <a
                   className="text-2xl font-semibold underline text-blue-900 italic"
                   href={currentTune.url}
@@ -130,20 +131,20 @@ class App extends React.Component {
                 </a>
               </p>
             </div>
-            <div className=" text-[#CEE1D5] rounded-lg mt-8 mr-8 w-full lg:w-1/2 ml-4">
-              <h3 className="mr-12 ml-12 mb-4 text-2xl text-black font-bold justify-center items-center">
+            <div className=" text-[#CEE1D5] rounded-lg w-full lg:w-1/2">
+              <h3 className="mr-8 ml-8 mb-4 mt-8 text-2xl text-center text-black font-bold">
                 Everything you ever wanted to know about {currentTune.name}{' '}
                 {currentTune.type} from Wikipedia:
               </h3>
-              <ul className="ml-4 mr-12">
+              <ul className="ml-8 mr-8">
                 {wikiResults.map((result) => (
                   <li
-                    className="wiki-result-animation p-4 bg-[#4D5D53] text-[#CEE1D5] rounded-lg mb-8"
+                    className="wiki-result-animation p-4 dark-green bg-[#4D5D53] text-[#CEE1D5] rounded-lg mb-8"
                     key={result.pageid}
                   >
                     <a
                       className="text-xl font-bold underline"
-                      href={`https://en.wikipedia.org/wiki/irishtune${result.title}`}
+                      href={`https://en.wikipedia.org/wiki/${result.title}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
