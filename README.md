@@ -14,11 +14,11 @@ My website will also provide some background information about the tune that is 
 API. 
 
 ### APIs used:
-https://thesession.org/api
+https://thesession.org/api<br/>
 https://api.wikimedia.org/core/v1/wikipedia/en/search/page?q=earth&limit=5
 
 ### JS code stack
-React JS Library: https://react.dev/
+React JS Library: https://react.dev/<br/>
 Anime JS Library: https://animejs.com
 
 
@@ -33,10 +33,10 @@ seemed to be implemented fairly seamlessly. If I had more time, I would have lik
 to display or getting the YouTube API working.
 
 ### Resources
-I did have some help from Chat GPT for troubleshooting some of the functions.
-anime.js was another JS library used to create an animation when the wikipedia results are displayed.
-https://favicon.io/emoji-favicons/flag-ireland/ for the Ireland flag favicon
-The landscape of Ireland inspired the colours used in the page.
+I did have some help from Chat GPT for troubleshooting some of the functions.<br/>
+anime.js was another JS library used to create an animation when the wikipedia results are displayed.<br/>
+https://favicon.io/emoji-favicons/flag-ireland/ for the Ireland flag favicon<br/>
+The landscape of Ireland inspired the colours used in the page.<br/>
 
 
 ### General Course Feedback
